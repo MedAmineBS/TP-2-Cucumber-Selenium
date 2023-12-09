@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,6 +30,9 @@ public class StepDefEx2 {
 	public void reset_the_credential() {
 	    // Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.name("btnReset")).click();
-		driver.close();
 	}
+	@After
+    public void quitWebDriver() {
+        driver.quit();
+    }
 }

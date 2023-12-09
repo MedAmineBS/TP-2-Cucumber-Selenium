@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -34,6 +35,9 @@ public class StepDef {
 	public void search_results_display_the_word(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 		System.out.println(driver.getTitle().contains(string));
-		driver.close();
 	}
+	@After
+    public void quitWebDriver() {
+        driver.quit();
+    }
 }
