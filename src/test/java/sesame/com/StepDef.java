@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,7 +19,7 @@ public class StepDef {
 	@Given("I open google search page")
 	public void i_open_google_search_page() {
 		 System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
-		 driver = new FirefoxDriver();
+		 //driver = new FirefoxDriver();
 		 driver.get("https://www.google.fr");
 	}
 	@When("I lookup the word {string}")
@@ -35,6 +36,10 @@ public class StepDef {
 	public void search_results_display_the_word(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 		System.out.println(driver.getTitle().contains(string));
+	}
+	@Before
+	public void startWebDriver() {
+		driver = new FirefoxDriver();
 	}
 	@After
     public void quitWebDriver() {

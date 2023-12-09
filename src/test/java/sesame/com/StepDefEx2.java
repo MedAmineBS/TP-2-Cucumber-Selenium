@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,7 +18,7 @@ public class StepDefEx2 {
 	@Given("Open the Chrome and launch the application")
 	public void open_the_Firefox_and_launch_the_application() {
 		 System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
-		 driver = new FirefoxDriver();
+		 //driver = new FirefoxDriver();
 		 driver.get("https://demo.guru99.com/v4");
 	}
 	@When("Enter the Username {string} and Password {string}")
@@ -30,6 +31,10 @@ public class StepDefEx2 {
 	public void reset_the_credential() {
 	    // Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.name("btnReset")).click();
+	}
+	@Before
+	public void startWebDriver() {
+		driver = new FirefoxDriver();
 	}
 	@After
     public void quitWebDriver() {
