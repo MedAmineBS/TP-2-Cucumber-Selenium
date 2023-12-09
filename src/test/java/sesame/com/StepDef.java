@@ -14,26 +14,22 @@ import io.cucumber.java.en.When;
 public class StepDef {
 	public WebDriver driver;
 
-	@Given("I open google search page")
-	public void i_open_google_search_page() {
+	@Given("Open the Chrome and launch the application")
+	public void open_the_Firefox_and_launch_the_application() {
 		 System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
 		 driver = new FirefoxDriver();
-		 driver.get("https://www.google.fr");
+		 driver.get("https://demo.guru99.com/v4");
 	}
-	@When("I lookup the word {string}")
-	public void i_lookup_the_word(String string) {
+	@When("Enter the Username {string} and Password {string}")
+	public void enter_the_username_and_password(String username,String password) {
 	    // Write code here that turns the phrase above into concrete actions
-		driver.findElement(By.name("q")).clear();
-	    driver.findElement(By.name("q")).sendKeys(string);
-	    WebElement submit=driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[4]/center/input[1]"));
-	    JavascriptExecutor javax=(JavascriptExecutor)driver;
-	    javax.executeScript("scroll(0,200)");
-	    submit.click();
+	    driver.findElement(By.name("uid")).sendKeys(username);
+	    driver.findElement(By.name("password")).sendKeys(password);
 	}
-	@Then("Search results display the word {string}")
-	public void search_results_display_the_word(String string) {
+	@Then("Reset the credential")
+	public void reset_the_credential() {
 	    // Write code here that turns the phrase above into concrete actions
-		System.out.println(driver.getTitle().contains(string));
+		driver.findElement(By.name("btnReset")).click();
 		driver.close();
 	}
 }
